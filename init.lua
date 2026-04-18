@@ -1,1 +1,1 @@
-vim.cmd("set relativenumber")
+require("config")
