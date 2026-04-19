@@ -29,3 +29,10 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
+
+-- Disabling netrw
+ vim.g.loaded_netrw = 1
+ vim.g.loaded_netrwPlugin = 1
+
+-- clipboard behaviour
+vim.opt.clipboard = "unnamedplus"
