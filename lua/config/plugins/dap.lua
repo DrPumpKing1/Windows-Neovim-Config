@@ -21,7 +21,10 @@ return {
             vim.keymap.set("n", "<F3>", dap.step_into, { desc = "Debug: Step Into" })
             vim.keymap.set("n", "<F4>", dap.step_out, { desc = "Debug: Step Out" })
             vim.keymap.set("n", "<F5>", dap.step_back, { desc = "Debug: Step Back" })
-            vim.keymap.set("n", "<F6>", dap.disconnect, { desc = "Debug: Disconnect" })
+            vim.keymap.set("n", "<F6>", function() 
+                dap.terminate({ terminateDebuggee = true }) 
+                require("dapui").close()
+            end, { desc = "Debug: Termninate" })
             vim.keymap.set("n", "<F13>", dap.restart, { desc = "Debug: Restart" })
             vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
             vim.keymap.set("n", "<leader>B", function()
@@ -61,7 +64,6 @@ return {
             dap.listeners.before.launch.dapui_config = function() ui.open() end
             dap.listeners.before.event_terminated.dapui_config = function() ui.close() end
             dap.listeners.before.event_exited.dapui_config = function() ui.close() end
-            dap.listeners.before.disconnect.dapui_config = function() ui.close() end
         end,
     },
     {
